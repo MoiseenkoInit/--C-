@@ -1,33 +1,33 @@
-﻿//Задача 38: Задайте массив вещественных чисел. Найдите разницу
-// между максимальным и минимальным элементов массива.
-//[3.22, 4.2, 1.15, 77.15, 65.2] => 77.15 - 1.15 = 76
-Console.WriteLine("Задать массив ");
+﻿//Задача 34: Задайте массив заполненный случайными положительными
+// трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
+//[345, 897, 568, 234] -> 2
+
+Console.WriteLine("Введите размер массива ");
 int size = Convert.ToInt32(Console.ReadLine());
-double[] numbers = new double[size];
+int[] numbers = new int[size];
 FillArrayRandomNumbers(numbers);
-Console.WriteLine("Array: ");
-double min = Int32.MaxValue;
-double max = Int32.MinValue;
+Console.WriteLine("массив: ");
+PrintArray(numbers);
+int count = 0;
+
 for (int z = 0; z < numbers.Length; z++)
-{
-    if (numbers[z] > max)
-        {
-            max = numbers[z];
-        }
-    if (numbers[z] < min)
-        {
-            min = numbers[z];
-        }
-}
-
-Console.WriteLine($"числа{numbers.Length}. Макс = {max}, мин = {min}");
-Console.WriteLine($"Разница макс-мин = {max - min}");
-
-void FillArrayRandomNumbers(double[] numbers)
+if (numbers[z] % 2 == 0)
+count++;
+Console.WriteLine($"всего {numbers.Length} чисел, {count} из них чётные");
+void FillArrayRandomNumbers(int[] numbers)
 {
     for(int i = 0; i < numbers.Length; i++)
-        {
-            numbers[i] = Convert.ToDouble(new Random().Next(100,1000)) / 100;
-        }
+    {
+        numbers[i] = new Random().Next(100,1000);
+    }
 }
-
+void PrintArray(int[] numbers)
+{
+    Console.Write("[ ");
+    for(int i = 0; i < numbers.Length; i++)
+    {
+        Console.Write(numbers[i] + " ");
+    }
+    Console.Write("]");
+    Console.WriteLine();
+}
