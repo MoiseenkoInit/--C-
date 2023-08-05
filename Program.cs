@@ -1,31 +1,33 @@
-﻿//Задача 36: Задайте одномерный массив, 
-//заполненный случайными числами. Найдите сумму элементов, 
-//стоящих на нечётных позициях.[3, 7, 23, 12] -> 19;[-4, -6, 89, 6] -> 0
-Console.WriteLine("Введите размер массива");
-int size = Convert.ToInt32(Console.ReadLine());
-int[] numbers = new int[size];
+﻿void FillArrayRandomNumbers(double[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            array[i, j] = Convert.ToDouble(new Random().Next(-100, 100)) / 10;
+        }
+    }
+}
+
+void PrintArray(double[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        Console.Write("[ ");
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            Console.Write(array[i, j] + " ");
+        }
+        Console.Write("]");
+        Console.WriteLine("");
+    }
+}
+
+Console.WriteLine("введите количество строк");
+int linesVol = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("введите количество столбцов");
+int columnsVol = Convert.ToInt32(Console.ReadLine());
+double[,] numbers = new double[linesVol, columnsVol];
 FillArrayRandomNumbers(numbers);
-Console.WriteLine("массив: ");
 PrintArray(numbers);
-int sum = 0;
-for (int z = 0; z < numbers.Length; z+=2)
-    sum = sum + numbers[z];
-    Console.WriteLine($"всего {numbers.Length}, сумма элементов нечётных позиций = {sum}");
-void FillArrayRandomNumbers(int[] numbers)
-{
-    for(int i = 0; i < numbers.Length; i++)
-        {
-            numbers[i] = new Random().Next(1,10);
-        }
-}
-void PrintArray(int[] numbers)
-{
-    Console.Write("[ ");
-    for(int i = 0; i < numbers.Length; i++)
-        {
-            Console.Write(numbers[i] + " ");
-        }
-    Console.Write("]");
-    Console.WriteLine();
-}
 
